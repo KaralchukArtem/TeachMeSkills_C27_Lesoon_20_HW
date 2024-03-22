@@ -6,7 +6,7 @@ public class CenterService {
 
     int countOfCars = 0;
 
-    public synchronized void getCar(){
+    public synchronized void putCar(){
         while (countOfCars >= Constants.MAX_CAR){
             try {
                 wait();
@@ -15,11 +15,11 @@ public class CenterService {
             }
         }
         countOfCars++;
-        System.out.println("getCar - " + countOfCars);
+        System.out.println("putCar - " + countOfCars);
         notify();
     }
 
-    public synchronized void pullCar(){
+    public synchronized void takeCar(){
         while (countOfCars < 1){
             try {
                 wait();
@@ -28,7 +28,7 @@ public class CenterService {
             }
         }
         countOfCars--;
-        System.out.println("pullCar - " + countOfCars);
+        System.out.println("takeCar - " + countOfCars);
         notify();
     }
 
